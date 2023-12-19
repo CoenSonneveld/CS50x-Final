@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+<link href="/static/styles.css" rel="stylesheet">
+<h3>Portfolio</h3>
+    <table>
+        <tr>
+            <th>Stock</th>
+            <th>Shares</th>
+            <th>Price</th>
+            <th>Total</th>
+        </tr>
+        {% for row in database %}
+            <tr>
+                <td><a href="/stock_info/{{ row["symbol"] }}">{{ row["symbol"] }}</a></td>
+                <td>{{ row["shares"] }}</td>
+                <td>{{ row["price"]| usd }}</td>
+                <td>{{ (row["shares"] * row["price"])| usd }}</td>
+            </tr>
+        {% endfor %}
+
+            <tr>
+                <td>Cash</td>
+                <td></td>
+                <td></td>
+                <td>{{ cash | usd }}</td>
+            </tr>
+
+        <tfoot>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>{{ remaining_cash | usd }}</td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <p></p>
+    <form action="/sell" method="post">
+        <div class="mb-3">
+            <select name="symbol" class="form-control mx-auto w-auto">
+                {% for row in database %}
+                <option value="{{ row['symbol'] }}">{{ row['symbol'] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="shares" placeholder="Shares" type="number">
+        </div>
+        <button class="btn btn-primary" type="submit">Sell</button>
+    </form>
+
+
+{% endblock %}

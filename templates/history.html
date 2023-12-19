@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Sell
+{% endblock %}
+
+{% block main %}
+<h3>History</h3>
+<link href="/static/styles.css" rel="stylesheet">
+    <table>
+        <tr>
+            <th>Type</th>
+            <th>Symbol</th>
+            <th>Shares</th>
+            <th>Price</th>
+            <th>Total</th>
+            <th>Timestamp</th>
+        </tr>
+        {% for transaction in transactions %}
+            <tr>
+                <td>{{ transaction.type }}</td>
+                <td>{{ transaction.symbol }}</td>
+                <td>{{ transaction.shares }}</td>
+                <td>{{ transaction.price }}</td>
+                <td>{{ transaction.date }}</td>
+                <td></td>
+            </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}

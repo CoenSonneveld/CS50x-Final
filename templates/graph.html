@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Graph
+{% endblock %}
+
+{% block main %}
+
+<div class="flex-container">
+
+    <div class="form-container">
+<form method="post" action="/graph">
+    <fieldset>
+        <legend>Stock Details</legend>
+        <label for="symbol">Enter Ticker Symbol:</label>
+        <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="symbol" name="symbol" placeholder="Symbol" type="text">
+    </fieldset>
+
+    <fieldset>
+        <label for="interval">Select Interval:</label>
+        <select id="interval" name="interval" class="form-control mx-auto w-auto">
+            <option value="1d">Daily</option>
+            <option value="5d">5 Daily</option>
+            <option value="1wk">Weekly</option>
+            <option value="1mo">Monthly</option>
+            <!-- Add other timeframes as needed -->
+        </select>
+    </fieldset>
+
+    <fieldset>
+        <label for="interval">Select Indicator:</label>
+        <select id="indicator-selector" name="indicator" class="form-control mx-auto w-auto">
+            <option value="SMA">Moving Average</option>
+            <option value="RSI">RSI</option>
+            <option value="VOLUME">Volume</option>
+        </select>
+    </fieldset>
+    <p></p>
+    <button class="btn btn-primary" type="submit">Show Graph</button>
+    <p></p>
+</form>
+    </div>
+    <div class="graph-container">
+        <div id="chart"></div>
+    </div>
+</div>
+    <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
+    <script src="/static/chart.js"></script>
+
+{% endblock %}

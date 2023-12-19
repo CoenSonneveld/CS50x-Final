@@ -1,0 +1,96 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Stock Information
+{% endblock %}
+
+{% block main %}
+
+<div class="container-fluid"> <!-- Start of container -->
+    <div class="row"> <!-- Start of row -->
+
+        <!-- Stock Data Card -->
+        <div class="col-md-6"> <!-- Start of table column -->
+
+            <h3 class="card-title">{{ short_name }}</h3>
+            <table class="table table-striped white-font">
+                <tbody>
+                    <tr>
+                        <th>Symbol</th>
+                        <td>{{ symbol }}</td>
+                    </tr>
+                    <tr>
+                        <th>Asset Type</th>
+                        <td>{{ asset_type }}</td>
+                    </tr>
+                    <tr>
+                        <th>Description</th>
+                        <td>{{ description }}</td>
+                    </tr>
+                    <tr>
+                        <th>Exchange</th>
+                        <td>{{ exchange }}</td>
+                    </tr>
+                    <tr>
+                        <th>Sector</th>
+                        <td>{{ sector }}</td>
+                    </tr>
+                    <tr>
+                        <th>Industry</th>
+                        <td>{{ industry }}</td>
+                    </tr>
+                    <tr>
+                        <th>Address</th>
+                        <td>{{ address }}</td>
+                    </tr>
+                    <tr>
+                        <th>Fiscal Year End</th>
+                        <td>{{ fiscal_year_end }}</td>
+                    </tr>
+                    <tr>
+                        <th>Market Cap</th>
+                        <td>{{ market_cap }}</td>
+                    </tr>
+                    <tr>
+                        <th>EBITDA</th>
+                        <td>{{ ebitda }}</td>
+                    </tr>
+                    <tr>
+                        <th>PE Ratio</th>
+                        <td>{{ pe_ratio }}</td>
+                    </tr>
+                    <tr>
+                        <th>Dividend Per Share</th>
+                        <td>{{ dividend_per_share }}</td>
+                    </tr>
+                    <tr>
+                        <th>Dividend Yield</th>
+                        <td>{{ dividend_yield }}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div> <!-- End of table column -->
+
+        <!-- News Section -->
+        <div class="col-md-6" style="width: 36rem;"> <!-- Start of news column -->
+
+            <h2>Latest News</h2>
+            {% for article in news_articles %}
+            <div class="news-article mb-4">
+                <a href="{{ article.url }}" target="_blank">
+                    <img src="{{ article.urlToImage }}" alt="{{ article.title }}" class="news-image">
+                </a>
+                <div class="news-content">
+                    <a href="{{ article.url }}" target="_blank" class="news-title">{{ article.title }}</a>
+                    <p class="news-description">{{ article.description }}</p>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div> <!-- End of news column -->
+
+    </div> <!-- End of row -->
+</div> <!-- End of container -->
+
+{% endblock %}

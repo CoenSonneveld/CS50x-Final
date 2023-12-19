@@ -1,0 +1,139 @@
+/* Size for brand */
+nav .navbar-brand
+{
+    font-size: xx-large;
+}
+
+/* Colors for brand */
+nav .navbar-brand .blue
+{
+    color: #537fbe;
+}
+nav .navbar-brand .red
+{
+    color: #ea433b;
+}
+nav .navbar-brand .yellow
+{
+    color: #f5b82e;
+}
+nav .navbar-brand .green
+{
+    color: #2e944b;
+}
+
+table
+{
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th
+{
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+  /* tr:nth-child(even)
+{
+    background-color: #212f4b;
+    color: white;
+} */
+
+.content-wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.stock-data {
+    flex: 1;
+    margin-right: 2rem; /* Spacing between the table and news section */
+}
+
+.news-section {
+    flex: 1;
+    max-width: 400px; /* Set a max width if you'd like */
+    overflow: hidden;
+}
+
+.news-article {
+    display: flex;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Optional shadow for each news block */
+    padding: 0.5rem;
+}
+
+.news-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-right: 1rem;
+}
+
+.news-title {
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+}
+
+.news-description {
+    margin-top: 0.5rem;
+    color: white;
+}
+
+.news-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 10px;
+}
+
+.news-item img {
+    margin-right: 15px;
+    border-radius: 5px;
+    max-width: 30px;
+    height: auto;
+}
+
+body {
+    background: linear-gradient(to bottom, rgba(17, 24, 39, 1), rgba(17, 24, 39, 1)); /* Top color is dark blue and bottom color is slightly lighter blue */
+    color: #fff; /* This sets the default text color to white for better readability against a dark background */
+}
+
+.custom-navbar {
+    background-color: #111827; /* This is a dark blue color. Adjust to your preference. */
+}
+
+.custom-light .navbar-nav .nav-link {
+    color: white !important;
+}
+
+.custom-light .navbar-nav .nav-link:hover {
+    color: #d3d3d3 !important; /* Lighter shade on hover */
+}
+
+.white-font, .white-font th, .white-font td {
+    color: white !important;
+}
+
+table, th, td {
+    color: white;
+}
+
+.flex-container {
+    display: flex;        /* Makes it a flex container */
+    align-items: start;   /* Aligns children to the start/top */
+    gap: 2rem;            /* Provides space between children */
+}
+
+.form-container {
+    flex: 1;              /* Takes up 1 fraction of the space */
+    max-width: 300px;     /* Or whatever width you feel suitable for the form */
+}
+
+.graph-container {
+    flex: 3;              /* Takes up 3 fractions of the space (making it wider than the form) */
+}

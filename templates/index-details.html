@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index Details
+{% endblock %}
+
+{% block main %}
+    <h3>Top 10 stocks in {{ index_name }}</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Growth Today (%)</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for stock in stocks %}
+                <tr>
+                    <td>{{ stock.name }}</td>
+                    <td>{{ '%.2f' | format(stock.price) }}</td>
+                    <td>{{ '%.2f' | format(stock.percentage_growth) }}%</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
