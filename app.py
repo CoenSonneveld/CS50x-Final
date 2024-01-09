@@ -304,7 +304,7 @@ def logout():
 
 @app.route('/stock_info/<symbol>')
 def stock_info(symbol):
-    API_KEY = 'RYKWN6PR4TFS8YAL'  # Replace with your API key
+    API_KEY = 'M7XAR1TPI2LDSNMO'  # Replace with your API key
     ENDPOINT = f"https://www.alphavantage.co/query?function=OVERVIEW&symbol={symbol}&apikey={API_KEY}"
 
     response = requests.get(ENDPOINT)
@@ -356,7 +356,7 @@ def stock_info(symbol):
         'news_articles': news_articles
     }
 
-
+    print(response.json())
 
     return render_template('stock_info.html', **info)
 
@@ -433,10 +433,10 @@ def get_indices_data():
 
 @app.route('/index-details/<index_name>')
 def index_details(index_name):
-    API_KEY = 'RYKWN6PR4TFS8YAL'
+    API_KEY = 'M7XAR1TPI2LDSNMO'
     # Hardcoded list for the top 15 stocks in ^AEX index (add others as needed).
     indices_data = {
-        "AEX": ["UNA.AS", "ADYEN.AS", "RAND.AS", "MT.AS", "KPN.AS", "ASRNL.AS", "REN.AS", "AGN.AS", "WKL.AS", "AD.AS"],
+        "AEX": ["UNA.AMS", "ADYEY", "RAND.AMS", "MT.AMS", "KPN.AMS", "ASRNL.AMS", "REN.AMS", "AGN.AMS", "WKL.AMS", "AD.AMS"],
         "EUROSTOXX 50": ["UNA.AS", "ADYEN.AS", "RAND.AS", "MT.AS", "KPN.AS", "ASRNL.AS", "REN.AS", "AGN.AS", "WKL.AS", "AD.AS"],
         "NASDAQ": ["UNA.AS", "ADYEN.AS", "RAND.AS", "MT.AS", "KPN.AS", "ASRNL.AS", "REN.AS", "AGN.AS", "WKL.AS", "AD.AS"],
         "S&P 500": ["UNA.AS", "ADYEN.AS", "RAND.AS", "MT.AS", "KPN.AS", "ASRNL.AS", "REN.AS", "AGN.AS", "WKL.AS", "AD.AS"],
@@ -468,17 +468,21 @@ def index_details(index_name):
             }
             response = requests.get('https://www.alphavantage.co/query', params=global_quote_params)
             if response.status_code == 200:
-                quote_data = response.json()['Global Quote']
-                # Extract and calculate the percentage change
-                price = float(quote_data['05. price'])
-                previous_close = float(quote_data['08. previous close'])
-                percentage_growth = ((price - previous_close) / previous_close) * 100
+                data = response.json()
+                if 'Global Quote' in data:
+                    quote_data = data['Global Quote']
+                    # Extract and calculate the percentage change
+                    price = float(quote_data['05. price'])
+                    previous_close = float(quote_data['08. previous close'])
+                    percentage_growth = ((price - previous_close) / previous_close) * 100
 
-                stocks.append({
-                    'name': company_names.get(symbol, symbol),  # Alpha Vantage does not return the company name in GLOBAL_QUOTE, so we use the symbol
-                    'price': price,
-                    'percentage_growth': percentage_growth
-                })
+                    stocks.append({
+                        'name': company_names.get(symbol, symbol),  # Alpha Vantage does not return the company name in GLOBAL_QUOTE, so we use the symbol
+                        'price': price,
+                        'percentage_growth': percentage_growth
+                    })
+                else:
+                    print(f"'Global Quote' not found in response for symbol: {symbol}. Full response: {data}")
             else:
                 print(f"Error fetching data for symbol: {symbol}")
 
