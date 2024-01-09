@@ -12,6 +12,8 @@ import pandas_ta as ta
 from helpers import apology, login_required, lookup, usd
 from lightweight_charts import Chart
 import requests
+import logging
+
 
 app = Flask(__name__)
 
@@ -26,6 +28,7 @@ Session(app)
 
 # Configure CS50 Library to use SQLite database
 db = SQL("sqlite:///finance.db")
+logging.getLogger('yfinance').setLevel(logging.ERROR)
 
 @app.after_request
 def after_request(response):
