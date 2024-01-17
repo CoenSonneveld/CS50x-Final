@@ -1,4 +1,4 @@
-/venv
+venv
 finance.db
-/flask_session
-/__pycache__
+flask_session
+__pycache__
